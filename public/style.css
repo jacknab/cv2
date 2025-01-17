@@ -1,0 +1,376 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background: #1c1c1c;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: #2a2a2a;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    color: #f7931a;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.user-info {
+    display: flex;
+    gap: 15px;
+    color: #888;
+}
+
+/* Main Content */
+main {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.left-section {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    gap: 15px;
+}
+
+.game-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background: #2a2a2a;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.game-area {
+    position: relative;
+}
+
+.max-profit {
+    padding: 10px;
+    color: #888;
+    font-size: 14px;
+    text-align: right;
+}
+
+/* Game Container */
+#gameContainer {
+    position: relative;
+    width: min(100%, 650px);
+    aspect-ratio: 16/9;
+    margin: 0;
+    padding-left: 25px;
+    padding-bottom: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #232323;
+}
+
+.game-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #232323;
+}
+
+/* Grid Labels */
+.y-axis-labels {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0;
+    color: #888;
+    font-size: 14px;
+    font-family: monospace;
+}
+
+.x-axis-labels {
+    position: absolute;
+    left: 25px;
+    bottom: 0;
+    width: calc(100% - 25px);
+    height: 20px;
+    overflow: hidden;
+    color: #888;
+    font-size: 14px;
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 0;
+}
+
+.time-markers {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.time-marker {
+    flex: 1;
+    text-align: center;
+}
+
+/* Canvas */
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Multiplier Display */
+#currentMultiplier {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(24px, min(15vw, 15vh), 144px);
+    font-family: monospace;
+    font-weight: bold;
+    color: #fff;
+    z-index: 10;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    line-height: 0.9;
+    white-space: nowrap;
+}
+
+/* Crash History */
+#crashHistory {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    display: flex;
+    gap: 15px;
+    padding: 0 15px;
+    align-items: center;
+    justify-content: flex-start;
+    background: transparent;
+    z-index: 10;
+}
+
+.crash-point {
+    font-family: monospace;
+    font-size: clamp(14px, min(4vw, 4vh), 20px);
+    font-weight: bold;
+    min-width: clamp(60px, 15%, 80px);
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Betting Controls */
+.betting-controls {
+    flex: 1;
+    min-width: 280px;
+    padding: 20px;
+    background: #2a2a2a;
+    border-radius: 4px;
+    height: fit-content;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mode-selector button {
+    padding: 8px 16px;
+    background: #333;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.mode-selector button.active {
+    background: #f7931a;
+    color: #fff;
+}
+
+.bet-inputs {
+    display: grid;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-group input {
+    background: #333;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    width: 120px;
+}
+
+.bet-button {
+    background: #f7931a;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Players Section */
+.players-section {
+    width: 280px;
+    flex-shrink: 0;
+    background: #2a2a2a;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Chat Room */
+.chat-room {
+    background: #2a2a2a;
+    border-radius: 4px;
+    height: 300px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    color: #888;
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    background: #333;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+}
+.players-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 15px;
+    background: #333;
+    color: #888;
+    font-size: 14px;
+}
+
+.players-list {
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    main {
+        flex-direction: column;
+    }
+    
+    .players-section {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+        align-items: flex-start;
+    }
+    
+    .game-section {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    nav button:not(:first-child):not(:last-child) {
+        display: none;
+    }
+    
+    .betting-controls {
+        width: 100%;
+        min-width: 0;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-section {
+        padding: 5px;
+        gap: 5px;
+    }
+
+    #gameContainer {
+        padding-left: 15px;
+    }
+    
+    #currentMultiplier {
+        width: 85%;
+        font-size: clamp(20px, min(12vw, 12vh), 96px);
+    }
+
+    .betting-controls {
+        padding: 10px;
+    }
+}

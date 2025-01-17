@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client</title>
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+</head>
+<body>
+
+  <!-- Displaying received messages -->
+  <div id="messages"></div>
+
+  <!-- Form to send a message -->
+  <form id="messageForm">
+    <input type="text" id="messageInput" placeholder="Type your message" required />
+    <button type="submit">Send Message</button>
+  </form>
+
+  <script>
+    // Initialize the Socket.io connection to the server
+    const socket = io('http://73.181.69.210:3000'); // Replace with your server's URL
+
+    // Listen for incoming messages
+    socket.on('message', (message) => {
+      const messagesDiv = document.getElementById('messages');
+      const newMessage = document.createElement('p');
+      newMessage.textContent = message;
+      messagesDiv.appendChild(newMessage);
+    });
+
+    // Handle form submission and send the message
+    const messageForm = document.getElementById('messageForm');
+    messageForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const messageInput = document.getElementById('messageInput');
+      const message = messageInput.value;
+
+      // Emit the message to the server
+      socket.emit('sendMessage', message);
+
+      // Clear the input field after submitting
+      messageInput.value = '';
+    });
+  </script>
+</body>
+</html>
+

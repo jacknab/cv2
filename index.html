@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Crash Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <span>BUSTANUT</span>
+        </div>
+        <nav>
+            <button>CASHIER</button>
+            <button>BANKROLL</button>
+            <button>BACKTESTING</button>
+            <button>STATS</button>
+            <button>LEADERBOARD</button>
+            <button>HELP</button>
+        </nav>
+        <div class="user-info">
+            <span class="username">GUEST</span>
+            <span class="balance">BITS: 0.00</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="left-section">
+            <div class="game-section">
+                <!-- Game Container -->
+                <div id="gameContainer">
+                    <div class="max-profit">Max profit: 85.49</div>
+                    <!-- Y-axis Labels -->
+                    <div class="y-axis-labels"></div>
+                    
+                    <div class="game-wrapper">
+                        <!-- Canvas for Animation -->
+                        <canvas id="gameCanvas" width="800" height="400"></canvas>
+                        <!-- Multiplier Display -->
+                        <p id="currentMultiplier" class="text-multiplier">1.00x</p>
+                        <!-- Crash History -->
+                        <div id="crashHistory"></div>
+                    </div>
+                    
+                    <!-- X-axis Labels -->
+                    <div class="x-axis-labels"></div>
+                </div>
+
+                <!-- Betting Controls -->
+                <div class="betting-controls">
+                    <div class="mode-selector">
+                        <button class="active">MANUAL</button>
+                        <button>AUTO</button>
+                    </div>
+                    <div class="bet-inputs">
+                        <div class="input-group">
+                            <label>Bet</label>
+                            <input type="number" value="2" min="0">
+                            <span>bits</span>
+                        </div>
+                        <div class="input-group">
+                            <label>Payout</label>
+                            <input type="number" value="2" min="1">
+                            <span>×</span>
+                        </div>
+                        <button class="bet-button">BET</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Room -->
+            <div class="chat-room">
+                <div class="chat-messages">
+                    <div>User1: Hello everyone!</div>
+                    <div>User2: Good luck!</div>
+                    <div>User3: Nice win!</div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Send a message...">
+                </div>
+            </div>
+        </div>
+
+        <!-- Players List -->
+        <div class="players-section">
+            <div class="players-header">
+                <div>USER</div>
+                <div>BET</div>
+                <div>PROFIT</div>
+            </div>
+            <div class="players-list">
+                <!-- Player entries will be populated dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
